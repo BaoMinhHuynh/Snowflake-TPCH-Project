@@ -29,14 +29,13 @@ clean-targets: # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   snowflake_dbt_project:
-  staging:
+    staging:
       +schema: STAGING
       +materialized: view
     intermediate:
       +schema: STAGING
       +materialized: view
     marts:
-      +schema: ANALYTICS
       +materialized: table
       reports:
         +schema: REPORTS

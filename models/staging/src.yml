@@ -1,0 +1,13 @@
+sources:
+  - name: tpch_staging # Tên định danh (alias) tự đặt cho nhóm nguồn này
+    database: TPCH_ANALYTICS_DB
+    schema: STAGING # Tên Schema thực tế trên Snowflake
+    tables:
+      - name: PART # Tên bảng thực tế
+      - name: ORDERS
+      - name: CUSTOMER
+      - name: LINEITEM
+      - name: NATION
+      - name: PARTSUPP
+      - name: REGION
+      - name: SUPPLIER
