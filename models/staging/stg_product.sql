@@ -1,6 +1,6 @@
 WITH product__source AS (
     SELECT * 
-    FROM TPCH_ANALYTICS_DB.STAGING.PART
+    FROM {{ source('tpch_staging', 'PART') }}
 ),
     product__rename AS (
         SELECT 
