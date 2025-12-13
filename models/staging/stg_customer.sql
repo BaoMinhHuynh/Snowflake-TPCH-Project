@@ -35,8 +35,8 @@ SELECT
     stg_customer.customer_acctbal,
     stg_customer.customer_mktsegment,
     stg_customer.customer_comment,
-    stg_nation.nation_name,
-    stg_nation.nation_comment, 
+    COALESCE(stg_nation.nation_name, 'N/A') AS nation_name,
+    COALESCE(stg_nation.nation_comment, 'N/A') AS nation_comment,
     stg_nation.region_name,
     stg_nation.region_comment
 FROM customer__cast AS stg_customer

@@ -32,8 +32,8 @@ SELECT
     stg_supplier.nation_key,
     stg_supplier.supplier_acctbal,
     stg_supplier.supplier_comment,
-    stg_nation.nation_name,
-    stg_nation.nation_comment, 
+    COALESCE(stg_nation.nation_name, 'N/A') AS nation_name,
+    COALESCE(stg_nation.nation_comment, 'N/A') AS nation_comment,
     stg_nation.region_name,
     stg_nation.region_comment
 FROM supplier__cast AS stg_supplier
