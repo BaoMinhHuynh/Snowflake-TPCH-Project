@@ -11,6 +11,7 @@ WITH product__source AS (
             P_TYPE AS product_type,
             P_SIZE AS product_size,
             P_CONTAINER AS container,
+            P_RETAILPRICE AS retail_price,
             P_COMMENT AS product_comment 
         FROM product__source
     ),
@@ -21,6 +22,7 @@ WITH product__source AS (
             CAST(mfgr AS STRING) AS mfgr,
             CAST(product_type AS STRING) AS product_type,
             CAST(product_size AS INTEGER) AS product_size,
+            CAST(retail_price AS NUMERIC(12,2)) AS retail_price,
             CAST(container AS STRING) AS container,
             CAST(product_comment AS STRING) AS product_comment
         FROM product__rename
@@ -32,5 +34,6 @@ SELECT
     product_type,
     product_size,
     container,
+    retail_price,
     product_comment
 FROM product__cast
