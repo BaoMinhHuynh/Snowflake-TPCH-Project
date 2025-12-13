@@ -23,8 +23,8 @@ SELECT
     stg_nation.nation_name,
     stg_nation.region_key,
     stg_nation.nation_comment,
-    stg_region.region_name,
-    stg_region.region_comment
+    COALESCE(stg_region.region_name,'N/A') AS region_name,
+    COALESCE(stg_region.region_comment,'N/A') AS region_comment
 FROM nation__cast AS stg_nation
 LEFT JOIN {{ref('stg_region')}} AS stg_region
 ON stg_nation.region_key = stg_region.region_key
