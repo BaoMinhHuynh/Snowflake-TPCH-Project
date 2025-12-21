@@ -15,6 +15,10 @@ Dự án này xây dựng một DataWarehouse (Áp dụng mô hình Star Schema)
 - **Analytics & ML:** Snowpark Python
 - **Environment Management:** Python-doten
 
+**Data Flow Architecture:**
+
+![Data Flow](assets/02_Data_flow.png)
+
 ## 2. Cấu trúc dự án
 
 ```text
@@ -134,6 +138,10 @@ dbt test    # Kiểm tra chất lượng dữ liệu
 
 **Kết quả:** Tạo ra các view (stg_order, stg_customer, ....) ở phần STAGING và tạo ra các table dim, fact ở phần ANALYTICS
 
+**Linage Graph Data Transform Flow:**
+
+![Data Transform Flow](assets/02_Lineage_Graph_dbt.png)
+
 ### Bước 2 Data pipeline automation
 
 Chạy file **02_medallion_data_pipeline_automation.sql** để tạo ra các pipe, stream, procedure, task, để tự động merge data vào các bảng raw cũng như là bảng view mỗi khi có data load vào stages
@@ -169,7 +177,9 @@ Chạy file **04_masking_policies_secure_data_sharing** ở snowflake để tạ
 
 Dữ liệu được phân tích dựa trên 3 chỉ số: Recency, Frequency, Monetary.
 
-Bảng kết quả: CUSTOMER_RFM_SCORES
+**Bảng kết quả:** CUSTOMER_RFM_SCORES
+
+![RFM](assets//05_rfm.png)
 
 **Insight**: Xác định được nhóm khách hàng trung thành (VIP) và nhóm khách hàng rời bỏ (Churn) dựa trên Recency giả định năm 1998.
 
@@ -177,6 +187,10 @@ Bảng kết quả: CUSTOMER_RFM_SCORES
 
 Phân tích doanh thu theo tháng để nhận diện tính mùa vụ.
 
-Bảng kết quả: MONTHLY_SALES_STATS
+**Bảng kết quả:** MONTHLY_SALES_STATS
 
-Biểu đồ: Biểu đồ đường thể hiện sự biến động doanh thu theo thời gian.
+![Monthly stats](assets/05_monthly_sales_stats.png)
+
+**Biểu đồ:** Biểu đồ đường thể hiện sự biến động doanh thu theo thời gian.
+
+![sales trend](assets/05_analyze_sales_trend_visualize.png)
