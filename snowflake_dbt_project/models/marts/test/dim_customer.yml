@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: Customer dimension
+    columns:
+      - name: customer_key
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_name
+        tests:
+          - not_null
+
+      - name: nation_name
+        tests:
+          - not_null
+
+      - name: region_name
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["AFRICA", "AMERICA", "ASIA", "EUROPE", "MIDDLE EAST"]

@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: fact_order_line_item
+    description: Fact table at order line grain
+    columns:
+      - name: order_line_item_key
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_key
+
+      - name: supplier_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_supplier')
+              field: supplier_key
+
+      - name: order_attribute_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_order_attribute')
+              field: order_attribute_key
+
+      - name: order_line_fulfillment_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_order_line_fulfillment')
+              field: order_line_fulfillment_key
+
+      - name: order_date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_iso
+
+      - name: quantity
+        tests:
+          - not_null
+
+      - name: extended_price
+        tests:
+          - not_null
+
+      - name: discount
+        tests:
+          - not_null
+
+      - name: supply_cost
+        tests:
+          - not_null

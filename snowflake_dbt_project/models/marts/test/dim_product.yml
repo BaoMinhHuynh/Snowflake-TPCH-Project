@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: Product dimension
+    columns:
+      - name: product_key
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        tests:
+          - not_null
+
+      - name: mfgr
+        tests:
+          - not_null
+
+      - name: brand
+        tests:
+          - not_null
+
+      - name: product_type
+        tests:
+          - not_null
+
+      - name: product_size
+        tests:
+          - not_null
