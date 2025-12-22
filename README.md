@@ -123,6 +123,13 @@ CREATE OR REPLACE TABLE NATION (
 
 Load Dữ Liệu từ Files vào Stages
 
+Bộ dữ liệu: **TPC-H Sample Data**
+
+- TPC-H là bộ dữ liệu benchmark chuẩn cho các hệ thống phân tích kinh doanh, bao gồm:
+- 8 bảng dữ liệu liên quan: Customer, Orders, LineItem, Part, PartSupp, Supplier, Nation, Region
+- Dữ liệu về khách hàng, đơn hàng, sản phẩm, nhà cung cấp
+- Nhiều quy mô dữ liệu khác nhau
+
 ## 4. Hướng dẫn chạy (Execution Guide)
 
 ### Bước 1: Data Transformation với dbt
