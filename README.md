@@ -61,7 +61,7 @@ Snowflake-TPCH-Project/
 
 Chạy lệnh sau để cài các gói cần thiết cho Snowpark:
 
-```text
+```bash
 pip install snowflake-snowpark-python pandas python-dotenv matplotlib
 ```
 
@@ -73,7 +73,7 @@ Sửa file .env trong thư mục python/ với nội dung (thay bằng thông ti
 
 Chạy đoạn script ( trong file **01_database_stage_roles.sql** ) trên Snowflake Worksheet để tạo database schemas và phân quyền
 
-```text
+```sql
 -- Tạo database cho dự án
 CREATE OR REPLACE DATABASE TPCH_ANALYTICS_DB;
 -- Tạo các schemas
@@ -85,7 +85,7 @@ CREATE OR REPLACE SCHEMA TPCH_ANALYTICS_DB.UDFS; -- User-define function
 STAGE TPCH_DATA_STAGE -- Stage chứa TPC-H data files
 ```
 
-```text
+```sql
 -- Tạo các roles cho dự án
 CREATE OR REPLACE ROLE TPCH_ADMIN;        -- Quản trị toàn bộ
 CREATE OR REPLACE ROLE TPCH_DEVELOPER;    -- Developer: Load data, transform
@@ -100,7 +100,7 @@ GRANT ALL PRIVILEGES ON ALL SCHEMAS IN DATABASE TPCH_ANALYTICS_DB TO ROLE TPCH_A
 
 Tạo các bảng RAW
 
-```text
+```sql
 -- B1: Chọn schema chứa các bảng raw
 USE DATABASE TPCH_ANALYTICS_DB;
 USE SCHEMA STAGING;
@@ -129,7 +129,7 @@ Load Dữ Liệu từ Files vào Stages
 
 Di chuyển vào thư mục dbt và chạy các lệnh:
 
-```text
+```bash
 dbt deps    # Cài đặt packages
 dbt seed    # Load dữ liệu thô (nếu có)
 dbt run     # Chạy các models (Staging -> Marts)
@@ -142,7 +142,7 @@ dbt test    # Kiểm tra chất lượng dữ liệu
 
 ![Data Transform Flow](assets/02_Lineage_Graph_dbt.png)
 
-### Bước 2 Data pipeline automation
+### Bước 2: Data pipeline automation
 
 Chạy file **02_medallion_data_pipeline_automation.sql** để tạo ra các pipe, stream, procedure, task, để tự động merge data vào các bảng raw cũng như là bảng view mỗi khi có data load vào stages
 
@@ -150,15 +150,15 @@ Chạy file **02_medallion_data_pipeline_automation.sql** để tạo ra các pi
 
 Mở file **05_udfs.sql** trên Snowflake và chạy toàn bộ để tạo các hàm:
 
-classify_customer_segment: Phân loại khách hàng (VIP, GOLD...).
+**_UDF_CUSTOMER_TIER_**: Phân loại khách hàng (VIP, GOLD...).
 
-is_valid_phone/email: Kiểm tra định dạng dữ liệu.
+**_UDF_VALIDATE_EMAIL/PHONE_**: Kiểm tra định dạng dữ liệu.
 
 ### Bước 4: Chạy Snowpark Analytics (Python)
 
 Chạy script Python để thực hiện phân tích nâng cao:
 
-```text
+```bash
 cd python
 python 05_snowpark.py
 ```
